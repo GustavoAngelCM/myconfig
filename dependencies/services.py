@@ -67,6 +67,7 @@ def devices():
                     # print('MAC')
 
         num = 0
+
         for host in salida:
             num = num + 1
             if len(host) == 1 :
@@ -78,7 +79,10 @@ def devices():
             
             print("--------------------------------------------------------------")
         
-        print("El ultimo registro es la direcion ip de la maquina actual.")            
+        if plataforma == 'win32':
+            print("El ultimo registro es la direcion ip de la maquina actual.")
+
+        print("{} dispositos conectados.".format(num))            
         print("\n\nPresione [Enter] o cualquier tecla seguido de [Enter]  para continaur...")
         variable = input()
 
