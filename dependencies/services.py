@@ -2,7 +2,7 @@ import os
 import sys
 import subprocess
 
-from menus import *
+from .menus import *
 
 def devices():
     
@@ -133,12 +133,14 @@ def ips():
     while True:
         menuIP()
         opcion = input()
-        if opcion == '3':
+        if opcion == '4':
             break
         elif opcion == '1':
             refreshIP()
         elif opcion == '2':
             asignIP()
+        elif opcion == '3':
+            print("en proceso")
         else:
             print("Error al seleccionar una opción, Seleccione valores entre 1 y 3. \nPresione [Enter] o cualquier tecla seguido de [Enter]  para continaur...")
         enter = input()
