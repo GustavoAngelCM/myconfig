@@ -28,8 +28,11 @@ def devices():
 
         cadena = stdout.decode('cp1252')
 
-        x = cadena.split('\r\n')
-
+        if plataforma == 'linux':
+            x = cadena.split('\n')
+        elif plataforma == 'win32':
+            x = cadena.split('\r\n')
+        
         salida = []
         item_salida = []
 
@@ -75,9 +78,10 @@ def devices():
             
             print("--------------------------------------------------------------")
         
-        print("El ultimo registro es la direcion ip de la maquina actual.")           
-        variable = input()
+        print("El ultimo registro es la direcion ip de la maquina actual.")            
         print("\n\nPresione [Enter] o cualquier tecla seguido de [Enter]  para continaur...")
+        variable = input()
+
     except:
 
         print('Puede que NMAP no este instalado. \ncomprueba usando nmap -v o dirigente a la pagina de descarga https://nmap.org/download.html ')
