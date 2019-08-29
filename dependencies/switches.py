@@ -5,7 +5,7 @@ def switchMain(value):
         devices()
     elif value == '2':
         # devices()
-        print("2")
+        ports()
     elif value == '3':
         # devices()
         print("3")

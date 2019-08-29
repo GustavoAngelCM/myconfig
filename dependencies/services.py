@@ -89,3 +89,25 @@ def devices():
     except:
 
         print('Puede que NMAP no este instalado. \ncomprueba usando nmap -v o dirigente a la pagina de descarga https://nmap.org/download.html ')
+
+def ports():
+
+    plataforma = sys.platform
+
+    if plataforma == 'linux':
+        os.system('clear')
+    elif plataforma == 'win32':
+        os.system('cls')
+
+    try:
+        scan = subprocess.Popen(
+            ['nmap', 'localhost', '|', 'grep', 'open'],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE
+        )
+
+        stdout, stderr = scan.communicate()
+        print(stdout)
+
+    except expression as identifier:
+       print('Puede que NMAP no este instalado. \ncomprueba usando nmap -v o dirigente a la pagina de descarga https://nmap.org/download.html ')
