@@ -108,6 +108,7 @@ def ports():
 
         stdout, stderr = scan.communicate()
         print(stdout)
-
+        print("\n\nPresione [Enter] o cualquier tecla seguido de [Enter]  para continaur...")
+        variable = input()
     except expression as identifier:
        print('Puede que NMAP no este instalado. \ncomprueba usando nmap -v o dirigente a la pagina de descarga https://nmap.org/download.html ')
