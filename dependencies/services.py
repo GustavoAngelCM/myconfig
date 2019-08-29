@@ -107,7 +107,19 @@ def ports():
         )
 
         stdout, stderr = scan.communicate()
-        print(stdout)
+        # print(type(stdout))
+
+        cadena = stdout.decode('cp1252')
+
+        if plataforma == 'linux':
+            x = cadena.split('\n')
+        elif plataforma == 'win32':
+            x = cadena.split('\r\n')
+        
+        for item in x:
+            sin_espacios = item.strip()
+            print(sin_espacios)
+
         print("\n\nPresione [Enter] o cualquier tecla seguido de [Enter]  para continaur...")
         variable = input()
     except expression as identifier:
