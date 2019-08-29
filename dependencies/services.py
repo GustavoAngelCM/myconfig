@@ -2,6 +2,8 @@ import os
 import sys
 import subprocess
 
+from menus import *
+
 def devices():
     
     plataforma = sys.platform
@@ -124,3 +126,72 @@ def ports():
         variable = input()
     except expression as identifier:
        print('Puede que NMAP no este instalado. \ncomprueba usando nmap -v o dirigente a la pagina de descarga https://nmap.org/download.html ')
+
+
+def ips():
+    
+    while True:
+        menuIP()
+        opcion = input()
+        if opcion == '3':
+            break
+        elif opcion == '1':
+            refreshIP()
+        elif opcion == '2':
+            asignIP()
+        else:
+            print("Error al seleccionar una opción, Seleccione valores entre 1 y 3. \nPresione [Enter] o cualquier tecla seguido de [Enter]  para continaur...")
+        enter = input()
+
+
+def refreshIP():
+    plataforma = sys.platform
+
+    if plataforma == 'linux':
+        os.system('clear')
+    elif plataforma == 'win32':
+        os.system('cls')
+
+    try:
+        if plataforma == 'linux':
+            release = subprocess.Popen(
+                ['sudo', 'dhclient', '-r'],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE
+            )
+            stdout, stderr = release.communicate()
+
+            renew = subprocess.Popen(
+                ['sudo', 'dhclient'],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE
+            )
+            stdout, stderr = renew.communicate()
+
+            print("Refrescado exitoso.")
+
+        elif plataforma == 'win32':
+            release = subprocess.Popen(
+                ['ipconfig', '/release'],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE
+            )
+            stdout, stderr = release.communicate()
+
+            renew = subprocess.Popen(
+                ['ipconfig', '/renew'],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE
+            )
+            stdout, stderr = renew.communicate()
+
+            print("Refrescado exitoso.")
+
+        print("\n\nPresione [Enter] o cualquier tecla seguido de [Enter]  para continaur...")
+        variable = input()
+    except:
+        print("Error inesperado")
+        
+
+    
+        

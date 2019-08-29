@@ -27,3 +27,22 @@ def menu():
     print("| Seleccione una opcion...                                            |")
     print("+---------------------------------------------------------------------+")
     pass
+
+def menuIP():
+    plataforma = sys.platform
+    if plataforma == 'linux':
+        os.system('clear')
+    elif plataforma == 'win32':
+        os.system('cls')
+    else:    # Para otros sistemas y variantes de Unix
+        print('echo "???"')
+
+    print("+---------------------------------------------------------------------+")
+    print("|                          ASIGNACION DE IP                           |")
+    print("+---------------------------------------------------------------------+")
+    print("| [1]. Refrecar ip dinamicamente.                                     |")
+    print("| [2]. Asignar ip especifica.                                         |")
+    print("| [3]. Volver.                                                        |")
+    print("+---------------------------------------------------------------------+")
+    print("| Seleccione una opcion...                                            |")
+    print("+---------------------------------------------------------------------+")
