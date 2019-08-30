@@ -194,6 +194,52 @@ def refreshIP():
     except:
         print("Error inesperado")
         
+def asignIP():
 
-    
-        
+    plataforma = sys.platform
+
+    if plataforma == 'linux':
+        os.system('clear')
+    elif plataforma == 'win32':
+        os.system('cls')
+
+    try:
+        if plataforma == 'linux':
+            print("Ingrese la tarjeta sobre la cual se aplicara le IP. Ej: enp0s3, enp0s8")
+            interface = input()
+            print("Ingrese su nueva direccion IP. Ej: 192.168.43.48")
+            ip = input()
+            print("Ingrese la mascara de red. Ej: 255.255.255.0")
+            mascara = input()
+            release = subprocess.Popen(
+                ['sudo', 'ifconfig', interface, ip, 'netmask', mascara],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE
+            )
+            stdout, stderr = release.communicate()
+
+            print("Cambio exitoso.")
+
+        elif plataforma == 'win32':
+            print("Ingrese la tarjeta sobre la cual se aplicara le IP. Ej: Ethernnet, Wi-Fi")
+            interface = input()
+            print("Ingrese su nueva direccion IP. Ej: 192.168.43.48")
+            ip = input()
+            print("Ingrese la mascara de red. Ej: 255.255.255.0")
+            mascara = input()
+            print("Ingrese el gateway de la red(usualmente lleva al final el 1). Ej: 192.168.43.1")
+            gateway = input()
+            release = subprocess.Popen(
+                ['netsh', 'interface', 'ipv4', 'set', 'address', 'name='+interface, 'static', ip, mascara, gateway],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE
+            )
+            stdout, stderr = release.communicate()
+
+            print("Cambio exitoso.")
+
+        print(
+            "\n\nPresione [Enter] o cualquier tecla seguido de [Enter]  para continaur...")
+        variable = input()
+    except:
+        print("Error inesperado")
