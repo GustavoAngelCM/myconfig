@@ -4,8 +4,52 @@ import subprocess
 
 from .menus import *
 
-def devices():
+def pings():
+    if plataforma == 'linux':
+        os.system('clear')
+    elif plataforma == 'win32':
+        os.system('cls')
 
+    try:
+        print('Ingrese la dirección ip. Ej: 192.168.1.5')
+        ip = input()
+        if plataforma == 'linux':
+            scan = subprocess.Popen(
+                ['ping', '-c', '4', ip],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE
+            )
+
+            stdout, stderr = scan.communicate()
+
+            cadena = stdout.decode('cp1252')
+            x = cadena.split('\n')
+
+            for item in x:
+                sin_espacios = item.strip()
+                print(sin_espacios)
+
+        elif plataforma == 'win32':
+            scan = subprocess.Popen(
+                ['ping', ip],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE
+            )
+
+            stdout, stderr = scan.communicate()
+            cadena = stdout.decode('cp1252')
+
+            x = cadena.split('\r\n')
+
+            for item in x:
+                sin_espacios = item.strip()
+                print(sin_espacios)
+
+        print("\n\nPresione [Enter] o cualquier tecla seguido de [Enter]  para continaur...")
+        variable = input()
+
+
+def scanner():
     plataforma = sys.platform
 
     if plataforma == 'linux':
@@ -91,6 +135,22 @@ def devices():
     except:
 
         print('Puede que NMAP no este instalado. \ncomprueba usando nmap -v o dirigente a la pagina de descarga https://nmap.org/download.html ')
+
+
+def devices():
+    while True:
+        menuScanner()
+        opcion = input()
+        if opcion == '3':
+            break
+        elif opcion == '1':
+            scanner()
+        elif opcion == '2':
+            pings()
+        else:
+            print("Error al seleccionar una opción, Seleccione valores entre 1 y 3. \nPresione [Enter] o cualquier tecla seguido de [Enter]  para continaur...")
+            enter = input()
+    
 
 def ports():
 
@@ -222,25 +282,11 @@ def asignIP():
             stdout, stderr = release.communicate()
 
             release1 = subprocess.Popen(
-                ['sudo', 'route', 'add', 'default', gateway, interface],
+                ['sudo', 'route', 'add', ip, 'gw', gateway, interface],
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE
             )
             stdout1, stderr1 = release1.communicate()
-
-            release2 = subprocess.Popen(
-                ['sudo', 'ifconfig', interface, 'down'],
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE
-            )
-            stdout2, stderr2 = release2.communicate()
-
-            release3 = subprocess.Popen(
-                ['sudo', 'ifconfig', interface, 'up'],
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE
-            )
-            stdout3, stderr3 = release3.communicate()
 
             print("Cambio exitoso.")
 

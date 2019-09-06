@@ -48,3 +48,23 @@ def menuIP():
     print("+---------------------------------------------------------------------+")
     print("| Seleccione una opcion...                                            |")
     print("+---------------------------------------------------------------------+")
+
+
+def menuScanner():
+    plataforma = sys.platform
+    if plataforma == 'linux':
+        os.system('clear')
+    elif plataforma == 'win32':
+        os.system('cls')
+    else:    # Para otros sistemas y variantes de Unix
+        print('echo "???"')
+
+    print("+---------------------------------------------------------------------+")
+    print("|                          ASIGNACION DE IP                           |")
+    print("+---------------------------------------------------------------------+")
+    print("| [1]. Lista de dispositivos conectados a la red.                     |")
+    print("| [2]. Realizar prueba de conexion.                                   |")
+    print("| [3]. Volver.                                                        |")
+    print("+---------------------------------------------------------------------+")
+    print("| Seleccione una opcion...                                            |")
+    print("+---------------------------------------------------------------------+")
