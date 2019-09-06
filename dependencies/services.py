@@ -5,7 +5,7 @@ import subprocess
 from .menus import *
 
 def devices():
-    
+
     plataforma = sys.platform
 
     if plataforma == 'linux':
@@ -34,7 +34,7 @@ def devices():
             x = cadena.split('\n')
         elif plataforma == 'win32':
             x = cadena.split('\r\n')
-        
+
         salida = []
         item_salida = []
 
@@ -46,7 +46,7 @@ def devices():
 
                 if sin_espacios.find('for') != -1:
 
-                    if len(item_salida) > 0:                        
+                    if len(item_salida) > 0:
                         item_salida = []
 
                     ip = sin_espacios.split(' ')
@@ -78,13 +78,13 @@ def devices():
                 print("| {}  |(IP) {} |(Latencia) {} |(MAC) -- |".format(num, host[0], host[1]))
             elif len(host) == 3 :
                 print("| {}  |(IP) {} |(Latencia) {} |(MAC) {} |".format(num, host[0], host[1], host[2]))
-            
+
             print("--------------------------------------------------------------")
-        
+
         if plataforma == 'win32':
             print("El ultimo registro es la direcion ip de la maquina actual.")
 
-        print("{} dispositos conectados.".format(num))            
+        print("{} dispositos conectados.".format(num))
         print("\n\nPresione [Enter] o cualquier tecla seguido de [Enter]  para continaur...")
         variable = input()
 
@@ -117,7 +117,7 @@ def ports():
             x = cadena.split('\n')
         elif plataforma == 'win32':
             x = cadena.split('\r\n')
-        
+
         for item in x:
             sin_espacios = item.strip()
             print(sin_espacios)
@@ -129,7 +129,7 @@ def ports():
 
 
 def ips():
-    
+
     while True:
         menuIP()
         opcion = input()
@@ -193,7 +193,7 @@ def refreshIP():
         variable = input()
     except:
         print("Error inesperado")
-        
+
 def asignIP():
 
     plataforma = sys.platform
@@ -211,12 +211,36 @@ def asignIP():
             ip = input()
             print("Ingrese la mascara de red. Ej: 255.255.255.0")
             mascara = input()
+            print("Ingrese el gateway de la red(usualmente lleva al final el 1). Ej: 192.168.43.1")
+            gateway = input()
+
             release = subprocess.Popen(
                 ['sudo', 'ifconfig', interface, ip, 'netmask', mascara],
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE
             )
             stdout, stderr = release.communicate()
+
+            release1 = subprocess.Popen(
+                ['sudo', 'route', 'add', 'default', gateway, interface],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE
+            )
+            stdout1, stderr1 = release1.communicate()
+
+            release2 = subprocess.Popen(
+                ['sudo', 'ifconfig', interface, 'down'],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE
+            )
+            stdout2, stderr2 = release2.communicate()
+
+            release3 = subprocess.Popen(
+                ['sudo', 'ifconfig', interface, 'up'],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE
+            )
+            stdout3, stderr3 = release3.communicate()
 
             print("Cambio exitoso.")
 
