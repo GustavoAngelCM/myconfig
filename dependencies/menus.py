@@ -1,70 +1,79 @@
 import os
 import sys
 
-def menu():
+def menuMain():
     plataforma = sys.platform
     if plataforma == 'linux':
         os.system('clear')
     elif plataforma == 'win32':
         os.system('cls')
     else:    # Para otros sistemas y variantes de Unix
-        print('echo "???"')
-    
+        print('ERROR AL LIMPIAR LA PANTALLA')
+
     print("+---------------------------------------------------------------------+")
-    print("|                   SCRIPT DE CONFIGURACIÓN EN PYTHON                 |")
+    print("|          SCRIPT DE CONFIGURACIÓN EN PYTHON [INICIO]                 |")
     print("+---------------------------------------------------------------------+")
-    print("| [1]. Visualizar dispositivos conectados a la red Actual.            |")
-    print("| [2]. Ver Puertos.                                                   |")
-    # print("| [2]. Gestionar Puertos.                                             |")
-    print("| [3]. Configurar IP.                                                 |")
-    print("| [4]. Configurar servidor  DHCP.                                     |")
-    print("| [5]. Configurar servidor  PROXY.                                    |")
-    print("| [6]. Configurar servidor  DNS.                                      |")
-    print("| [7]. Configurar servidor  EMAIL.                                    |")
-    print("| [8]. Configurar servidor  WEB.                                      |")
-    print("| [9]. Configurar Virtual Host.                                       |")
+    print("| [1]. HOST.                                                          |")
+    print("| [2]. PING.                                                          |")
+    print("| [3]. PUERTOS.                                                       |")
     print("| [0]. SALIR                                                          |")
     print("+---------------------------------------------------------------------+")
     print("| Seleccione una opcion...                                            |")
     print("+---------------------------------------------------------------------+")
 
-
-def menuIP():
+def menuHost():
     plataforma = sys.platform
     if plataforma == 'linux':
         os.system('clear')
     elif plataforma == 'win32':
         os.system('cls')
     else:    # Para otros sistemas y variantes de Unix
-        print('echo "???"')
+        print('ERROR AL LIMPIAR LA PANTALLA')
 
     print("+---------------------------------------------------------------------+")
-    print("|                          ASIGNACION DE IP                           |")
+    print("|               SCRIPT DE CONFIGURACIÓN EN PYTHON [IP]                |")
     print("+---------------------------------------------------------------------+")
-    print("| [1]. Refrecar ip dinamicamente.                                     |")
-    print("| [2]. Asignar ip especifica.                                         |")
-    print("| [3]. Configurar DHCP.                                               |")
-    print("| [4]. Volver.                                                        |")
+    print("| [1]. IP ESTATICO.                                                   |")
+    print("| [2]. IP DINAMICO.                                                   |")
+    print("| [0]. Volver.                                                        |")
     print("+---------------------------------------------------------------------+")
     print("| Seleccione una opcion...                                            |")
     print("+---------------------------------------------------------------------+")
 
-
-def menuScanner():
+def menuPing():
     plataforma = sys.platform
     if plataforma == 'linux':
         os.system('clear')
     elif plataforma == 'win32':
         os.system('cls')
     else:    # Para otros sistemas y variantes de Unix
-        print('echo "???"')
+        print('ERROR AL LIMPIAR LA PANTALLA')
 
     print("+---------------------------------------------------------------------+")
-    print("|                          ASIGNACION DE IP                           |")
+    print("|              SCRIPT DE CONFIGURACIÓN EN PYTHON[PING]                |")
     print("+---------------------------------------------------------------------+")
-    print("| [1]. Lista de dispositivos conectados a la red.                     |")
-    print("| [2]. Realizar prueba de conexion.                                   |")
-    print("| [3]. Volver.                                                        |")
+    print("| [1]. PING A LA RED.                                                 |")
+    print("| [2]. PING DISPOSITIVO.                                              |")
+    print("| [0]. Volver.                                                        |")
+    print("+---------------------------------------------------------------------+")
+    print("| Seleccione una opcion...                                            |")
+    print("+---------------------------------------------------------------------+")
+
+def menuPuertos():
+    plataforma = sys.platform
+    if plataforma == 'linux':
+        os.system('clear')
+    elif plataforma == 'win32':
+        os.system('cls')
+    else:    # Para otros sistemas y variantes de Unix
+        print('ERROR AL LIMPIAR LA PANTALLA')
+
+    print("+---------------------------------------------------------------------+")
+    print("|           SCRIPT DE CONFIGURACIÓN EN PYTHON [PUERTOS]               |")
+    print("+---------------------------------------------------------------------+")
+    print("| [1]. VER PUERTOS ABIERTOS.                                          |")
+    print("| [2]. CERRAR PUERTO.                                                 |")
+    print("| [0]. Volver.                                                        |")
     print("+---------------------------------------------------------------------+")
     print("| Seleccione una opcion...                                            |")
     print("+---------------------------------------------------------------------+")
