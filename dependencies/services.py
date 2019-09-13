@@ -336,11 +336,21 @@ def portsKill():
             print('Ingrese el puerto para cerrar Ej: 80/tcp.')
             port = input()
             os.system('sudo fuser -k '+ port)
-            print('\n\n\nPuerto cerrado. [ENTER]')
+            os.system('sudo nmap -sS -v ' + ip)
+            print('\n\n\n [ENTER]')
             variable = input()
 
         elif plataforma == 'win32':
-            print('\n\n\nWindows no permitido [ENTER]')
+            os.system('clear')
+            os.system('netstat -aon')
+            print('Ingrese el PID para cerrar el puerto Ej: 1552 ')
+            port = input()
+            os.system('taskkill /F /PID ' + port)
+            os.system('netstat -aon')
+            print('\n\n\n[ENTER]')
+            variable = input()
+
+            print('\n\n\n[ENTER]')
             variable = input()
     except:
         print('\n\n\nERROR [ENTER]')
