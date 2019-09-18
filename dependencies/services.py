@@ -355,3 +355,38 @@ def portsKill():
     except:
         print('\n\n\nERROR [ENTER]')
         variable = input()
+
+
+def viewLVM():
+    plataforma=sys.platform
+    if(plataforma=='linux'):
+        os.system('clear')
+        print('ingrese nombre del volumen físico ejemplo: /dev/sda')
+        volumen = input()
+        os.system('fdisk -l '+volumen)
+        print('\n\n\n[ENTER]')
+        variable = input()
+
+
+def createPartitionLVM():
+    plataforma=sys.platform
+    if(plataforma=='linux'):
+        os.system('clear')
+        print('ingrese nombre del volumen físico ejemplo: /dev/sda')
+        particion = input()
+        os.system('fdisk '+particion)
+        os.system('n')
+        os.system('p')
+        print('\n\n\n[ENTER]')
+        variable = input()
+
+def extendLVM():
+    plataforma=sys.platform
+    if(plataforma=='linux'):
+        os.system('clear')
+        print('ingrese nombre del volumen físico ejemplo: /dev/sda')
+        volumen = input()
+        os.system('fdisk -l '+volumen)
+        print('\n\n\n[ENTER]')
+        variable = input()
+

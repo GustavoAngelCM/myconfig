@@ -23,6 +23,27 @@ def switchMain(value):
             if opcion == '0':
                 break
             switchPuertos(opcion)
+    elif value == '4':
+        while True:
+            menuLVM()
+            opcion = input()
+            if opcion == '0':
+                break
+            switchPuertos(opcion)
+    elif value == '5':
+        while True:
+            menuSSH()
+            opcion = input()
+            if opcion == '0':
+                break
+            switchPuertos(opcion)
+    elif value == '6':
+        while True:
+            menuPuertos()
+            opcion = input()
+            if opcion == '0':
+                break
+            switchPuertos(opcion)
     else:
         print("Error al seleccionar una opción, Seleccione valores entre 0 y 3. \nPresione [Enter] o cualquier tecla seguido de [Enter]  para continaur...")
         enter = input()
@@ -50,6 +71,35 @@ def switchPuertos(value):
         portsView()
     elif value == '2':
         portsKill()
+    else:
+        print("Error al seleccionar una opción, Seleccione valores entre 0 y 2. \nPresione [Enter] o cualquier tecla seguido de [Enter]  para continaur...")
+        enter = input()
+
+
+def switchLVM(value):
+    if value == '1':
+        viewLVM()
+    elif value == '2':
+        createPartitionLVM()
+
+    elif value == '3':
+        portsKill()
+    
+    else:
+        print("Error al seleccionar una opción, Seleccione valores entre 0 y 2. \nPresione [Enter] o cualquier tecla seguido de [Enter]  para continaur...")
+        enter = input()
+
+def switchSSH(value):
+    if value == '1':
+        portsView()
+    elif value == '2':
+        portsKill()
+    elif value == '3':
+        portsKill()
+    elif value == '4':
+        portsKill()
+    elif value == '5':
+        portsKill()    
     else:
         print("Error al seleccionar una opción, Seleccione valores entre 0 y 2. \nPresione [Enter] o cualquier tecla seguido de [Enter]  para continaur...")
         enter = input()
