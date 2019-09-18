@@ -374,9 +374,9 @@ def createPartitionLVM():
         os.system('clear')
         print('ingrese nombre del volumen físico ejemplo: /dev/sda')
         particion = input()
-        os.system('fdisk '+particion)
-        os.system('n')
-        os.system('p')
+        os.system('fdisk '+particion+ ' < dependencies/optionsFDISK ')
+       # print('n')
+       # print('p')
         print('\n\n\n[ENTER]')
         variable = input()
 

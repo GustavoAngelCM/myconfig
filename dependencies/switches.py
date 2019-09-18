@@ -29,7 +29,7 @@ def switchMain(value):
             opcion = input()
             if opcion == '0':
                 break
-            switchPuertos(opcion)
+            switchLVM(opcion)
     elif value == '5':
         while True:
             menuSSH()
