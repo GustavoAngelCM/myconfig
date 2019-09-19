@@ -447,11 +447,11 @@ def createPartitionLVM():
                 'S\n',
 
                 't\n',
-                '\n',  # este
+                '1\n',  # este
                 '8e\n',
 
                 't\n',
-                '\n',  # este
+                '2\n',  # este
                 '8e\n',
 
                 'w',
@@ -499,15 +499,15 @@ def createPartitionLVM():
                 'S\n',
 
                 't\n',
-                '\n',  # este
+                '1\n',  # este
                 '8e\n',
 
                 't\n',
-                '\n',  # este
+                '2\n',  # este
                 '8e\n',
 
                 't\n',
-                '\n',  # este
+                '3\n',  # este
                 '8e\n',
 
                 'w',
@@ -565,19 +565,19 @@ def createPartitionLVM():
                 'S\n',
 
                 't\n',
-                '\n',  # este
+                '1\n',  # este
                 '8e\n',
 
                 't\n',
-                '\n',  # este
+                '2\n',  # este
                 '8e\n',
 
                 't\n',
-                '\n',  # este
+                '3\n',  # este
                 '8e\n',
 
                 't\n',
-                '\n',  # este
+                '4\n',  # este
                 '8e\n',
 
                 'w',
