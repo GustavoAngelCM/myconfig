@@ -336,7 +336,7 @@ def portsKill():
             print('Ingrese el puerto para cerrar Ej: 80/tcp.')
             port = input()
             os.system('sudo fuser -k '+ port)
-            os.system('sudo nmap -sS -v ' + ip)
+            os.system('sudo nmap -sS -v ' + ip) 
             print('\n\n\n [ENTER]')
             variable = input()
 
@@ -372,11 +372,24 @@ def createPartitionLVM():
     plataforma=sys.platform
     if(plataforma=='linux'):
         os.system('clear')
-        print('ingrese nombre del volumen físico ejemplo: /dev/sda')
+        os.system('fdisk -l')
+        print('\n\nIngrese nombre del volumen físico ejemplo: /dev/sda')
         particion = input()
-        os.system('fdisk '+particion+ ' < dependencies/optionsFDISK ')
-       # print('n')
-       # print('p')
+        print('Ingrese el tamaño de disco, menor al tamaño del mismo. \nEj: [5G/400M] ')
+        tam = input()
+        arrayToFile = ['n\n', 'p\n', '\n', '\n', '+'+tam+'\n', 'S\n', 't\n', '\n', '8e\n', 'w']
+        
+        archivo = open('dependencies/optionsFDISK.g', 'w')
+        
+        archivo.writelines(arrayToFile)
+        archivo.close()
+
+        os.system('sudo fdisk '+particion + ' < dependencies/optionsFDISK.g ')
+
+        print('\n\n======================================================================================================\n\n')
+
+        os.system('fdisk -l '+particion)
+
         print('\n\n\n[ENTER]')
         variable = input()
 

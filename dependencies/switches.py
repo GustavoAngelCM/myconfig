@@ -81,7 +81,6 @@ def switchLVM(value):
         viewLVM()
     elif value == '2':
         createPartitionLVM()
-
     elif value == '3':
         portsKill()
     
