@@ -375,9 +375,213 @@ def createPartitionLVM():
         os.system('fdisk -l')
         print('\n\nIngrese nombre del volumen físico ejemplo: /dev/sda')
         particion = input()
-        print('Ingrese el tamaño de disco, menor al tamaño del mismo. \nEj: [5G/400M] ')
-        tam = input()
-        arrayToFile = ['n\n', 'p\n', '\n', '\n', '+'+tam+'\n', 'S\n', 't\n', '\n', '8e\n', 'w']
+        tam = ''
+        tamanho = []
+        arrayToFile = []
+        while True:
+            print('\n\n\nIngrese el tamaño de disco, menor al tamaño del mismo. \nEj: [5G/400M] \n Multiple? Ej 5G,2G,1G,500M [* Maximo 4] ')
+            tam = input()
+            tamanho = tam.split(',')
+            if len(tamanho)<=4:
+                break
+            else:
+                print('\n\n\nFormato no valido.')    
+            
+        if len(tamanho)==1:            
+            arrayToFile = [
+                'd\n', 
+                '\n', 
+                'd\n', 
+                '\n',
+                'd\n',
+                '\n',
+                'd\n',
+                '\n',
+
+                'n\n',
+                'p\n',
+
+                '\n', 
+                '\n', 
+
+                '+'+tamanho[0]+'\n',
+
+                'S\n', 
+
+                't\n', 
+                '\n', #este
+                '8e\n',
+
+                'w',
+            ]
+
+        if len(tamanho) == 2:
+            arrayToFile = [
+                'd\n',
+                '\n',
+                'd\n',
+                '\n',
+                'd\n',
+                '\n',
+                'd\n',
+                '\n',
+
+                'n\n',
+                'p\n',
+
+                '\n',
+                '\n',
+
+                '+'+tamanho[0]+'\n',
+
+                'S\n',
+
+                'n\n',
+                'p\n',
+
+                '\n',
+                '\n',
+
+                '+'+tamanho[1]+'\n',
+
+                'S\n',
+
+                't\n',
+                '\n',  # este
+                '8e\n',
+
+                't\n',
+                '\n',  # este
+                '8e\n',
+
+                'w',
+            ]
+
+        if len(tamanho) == 3:
+            arrayToFile = [
+                'd\n',
+                '\n',
+                'd\n',
+                '\n',
+                'd\n',
+                '\n',
+                'd\n',
+                '\n',
+
+                'n\n',
+                'p\n',
+
+                '\n',
+                '\n',
+
+                '+'+tamanho[0]+'\n',
+
+                'S\n',
+
+                'n\n',
+                'p\n',
+
+                '\n',
+                '\n',
+
+                '+'+tamanho[1]+'\n',
+
+                'S\n',
+
+                'n\n',
+                'p\n',
+
+                '\n',
+                '\n',
+
+                '+'+tamanho[2]+'\n',
+
+                'S\n',
+
+                't\n',
+                '\n',  # este
+                '8e\n',
+
+                't\n',
+                '\n',  # este
+                '8e\n',
+
+                't\n',
+                '\n',  # este
+                '8e\n',
+
+                'w',
+            ]
+        
+        if len(tamanho) == 4:
+            arrayToFile = [
+                'd\n',
+                '\n',
+                'd\n',
+                '\n',
+                'd\n',
+                '\n',
+                'd\n',
+                '\n',
+
+                'n\n',
+                'p\n',
+
+                '\n',
+                '\n',
+
+                '+'+tamanho[0]+'\n',
+
+                'S\n',
+
+                'n\n',
+                'p\n',
+
+                '\n',
+                '\n',
+
+                '+'+tamanho[1]+'\n',
+
+                'S\n',
+
+                'n\n',
+                'p\n',
+
+                '\n',
+                '\n',
+
+                '+'+tamanho[2]+'\n',
+
+                'S\n',
+
+                'n\n',
+                'p\n',
+
+                '\n',
+                '\n',
+
+                '+'+tamanho[3]+'\n',
+
+                'S\n',
+
+                't\n',
+                '\n',  # este
+                '8e\n',
+
+                't\n',
+                '\n',  # este
+                '8e\n',
+
+                't\n',
+                '\n',  # este
+                '8e\n',
+
+                't\n',
+                '\n',  # este
+                '8e\n',
+
+                'w',
+            ]
         
         archivo = open('dependencies/optionsFDISK.g', 'w')
         
@@ -386,7 +590,7 @@ def createPartitionLVM():
 
         os.system('sudo fdisk '+particion + ' < dependencies/optionsFDISK.g ')
 
-        print('\n\n======================================================================================================\n\n')
+        print('\n\n=============================================================================\n\n')
 
         os.system('fdisk -l '+particion)
 
