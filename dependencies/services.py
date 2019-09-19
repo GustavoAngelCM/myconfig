@@ -379,7 +379,7 @@ def createPartitionLVM():
         tamanho = []
         arrayToFile = []
         while True:
-            print('\n\n\nIngrese el tamaño de disco, menor al tamaño del mismo. \nEj: [5G/400M] \n Multiple? Ej 5G,2G,1G,500M [* Maximo 4] ')
+            print('\n\n\nIngrese el tamaño de la(s) partcion(es), esta debe menor al tamaño del disco. \nEj: [5G/400M] \n Multiple? Ej 5G,2G,1G,500M [* Maximo 4] ')
             tam = input()
             tamanho = tam.split(',')
             if len(tamanho)<=4:
@@ -592,7 +592,8 @@ def createPartitionLVM():
 
         print('\n\n=============================================================================\n\n')
 
-        os.system('fdisk -l '+particion)
+        os.system("clear")
+        os.system('sudo fdisk -l '+particion)
 
         print('\n\n\n[ENTER]')
         variable = input()
@@ -601,9 +602,119 @@ def extendLVM():
     plataforma=sys.platform
     if(plataforma=='linux'):
         os.system('clear')
-        print('ingrese nombre del volumen físico ejemplo: /dev/sda')
+        print('Ingrese nombre del volumen físico. EJ: /dev/sdb')
         volumen = input()
-        os.system('fdisk -l '+volumen)
+        os.system('sudo fdisk -l '+volumen)
+        print('Ingrese nombre de la particion. EJ: /dev/sdb1')
+        particion = input()
+
+        os.system('sudo pvcreate '+particion)
+        os.system('sudo pvs')
+
+        print('Ingrese nombre del disco LVM. EJ: ubuntu-vg')
+        lvm = input()
+        os.system('sudo vgextend '+lvm+' '+particion)
+
+        os.system('clear')
+        os.system('sudo vgs')
+        os.system('sudo pvscan')
+        os.system('sudo lvdisplay')
+        os.system('sudo vgdisplay')
+
+        print('Ingrese el codigo del espacio vacio. EJ: 4606')
+        vacio = input()
+        print('Ingrese el la particion LVM la cual desea extender. EJ: lv-home')
+        subpart = input()
+
+        os.system('clear')
+        os.system('sudo lvextend -l +'+vacio+' /dev/'+lvm+'/'+subpart)
+        os.system('clear')
+        os.system('sudo lvdisplay')
+
+
         print('\n\n\n[ENTER]')
         variable = input()
+
+
+
+def createUser():
+    plataforma=sys.platform
+    if(plataforma=='linux'):
+        os.system('clear')
+        print('Ingrese el nombre de usuario. EJ: juanito')
+        nombre = input()
+        os.system('sudo adduser '+ nombre)
+
+        print('\n\n\n[ENTER]')
+        variable = input()
+
+    pass
+
+def createGroup():
+    plataforma=sys.platform
+    if(plataforma=='linux'):
+        os.system('clear')
+        
+        print('Ingrese el nombre del grupo. EJ: jardineros')
+        nombre = input()
+        os.system('sudo addgroup '+ nombre)
+
+        print('\n\n\n[ENTER]')
+        variable = input()
+    pass
+
+def editGroup():
+    plataforma=sys.platform
+    if(plataforma=='linux'):
+        os.system('clear')
+        op = ''
+        while True:
+            
+            print('[1]. Asignar usuario a un grupo.')
+            print('[2]. Cambiar de grupo a un usuario.')
+            op = input()
+            if op == '1' or op == '2':
+                break
+            else:
+                print('\n\nopcion invalida.......')
+
+        print('Ingrese el nombre del grupo. EJ: jardineros')
+        grupo = input()
+        print('Ingrese el nombre del usuario. EJ: juanito')
+        nombre = input()
+
+        if op == '1':
+            os.system('usermod -a -G '+grupo+' '+nombre)
+        elif op =='2':
+            os.system('usermod -g '+grupo+' '+nombre)
+
+
+def deleteGroup():
+    plataforma=sys.platform
+    if(plataforma=='linux'):
+        os.system('clear')
+        
+        print('Ingrese el nombre del grupo. EJ: jardineros')
+        nombre = input()
+        os.system('sudo delgroup ' + nombre)
+
+        print('\n\n\n[ENTER]')
+        variable = input()
+
+    pass
+
+def deleteUser():
+    plataforma=sys.platform
+    if(plataforma=='linux'):
+        os.system('clear')
+        
+        print('Ingrese el nombre del usuario. EJ: juanito')
+        nombre = input()
+        os.system('sudo deluser ' + nombre)
+
+        print('\n\n\n[ENTER]')
+        variable = input()
+
+    pass
+
 

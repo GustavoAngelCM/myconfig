@@ -82,23 +82,22 @@ def switchLVM(value):
     elif value == '2':
         createPartitionLVM()
     elif value == '3':
-        portsKill()
-    
+        extendLVM()  
     else:
         print("Error al seleccionar una opción, Seleccione valores entre 0 y 2. \nPresione [Enter] o cualquier tecla seguido de [Enter]  para continaur...")
         enter = input()
 
 def switchSSH(value):
     if value == '1':
-        portsView()
+        createUser()
     elif value == '2':
-        portsKill()
+        createGroup()
     elif value == '3':
-        portsKill()
+        editGroup()
     elif value == '4':
-        portsKill()
+        deleteGroup()
     elif value == '5':
-        portsKill()    
+        deleteUser()    
     else:
         print("Error al seleccionar una opción, Seleccione valores entre 0 y 2. \nPresione [Enter] o cualquier tecla seguido de [Enter]  para continaur...")
         enter = input()
