@@ -717,4 +717,71 @@ def deleteUser():
 
     pass
 
+def createDHCP():
+    plataforma = sys.platform
+    if(plataforma == 'linux'):
 
+        os.system('clear')
+        os.system('ifconfig')
+
+        print('dijite nombre de la interfas para la configuracion ejm(enp0s3)')
+        defaul = input()
+        files = open("/etc/default/isc-dhcp-server", "w")
+        files.write('INTERFACESv4="{0}"\n'.format(defaul))
+        files.write('INTERFACESv6=""')
+        files.close()
+        #configurando archivo dhcpd.conf
+        print('dijite el rango de Ip ejem(192.168.1.0)')
+        rango = input()
+        print('dijite la macara ejem(255.255.255.0)')
+        mask = input()
+        print('dijite el inicio de IP ejem(192.168.1.5)')
+        inicio = input()
+        print('dijite el fin de la IP ejem(192.168.1.100)')
+        fin = input()
+        print('dijite IP router ejem(192.168.1.1))')
+        router = input()
+        dhcpd = open("/etc/dhcp/dhcpd.conf", "w")
+        dhcpd.write('default-lease-time 600;\n')
+        dhcpd.write("max-lease-time 7200;\n")
+        dhcpd.write("ddns-update-style none;\n")
+        dhcpd.write("authoritative;\n\n\n")
+        #subnet  192.168.1.0 rango de ip
+        dhcpd.write('subnet {0} netmask {1} {2}\n'.format(rango, mask, chr(123)))
+        dhcpd.write(" range {0} {1};\n".format(inicio, fin))
+        dhcpd.write(" option routers {0};\n".format(router))
+        dhcpd.write(" option subnet-mask {0};\n".format(mask))
+        dhcpd.write(" option domain-name-servers {0}, 8.8.8.8;\n".format(router))
+        dhcpd.write("}")
+        dhcpd.close()
+
+        os.system('sudo systemctl restart isc-dhcp-server')
+        os.system('sudo systemctl status isc-dhcp-server')
+
+        print('\n\n\n[ENTER]')
+        variable = input()
+    pass
+
+def addIPMAC():
+    plataforma = sys.platform
+    if(plataforma == 'linux'):
+
+        os.system('clear')
+        print("para saber cual es mi mac addres en otra PC (ifconfig | grep ether)")
+        print("dijite la mac de la PC que desea agregar")
+        mac = input()
+        print("nombre de la pc (pc1)")
+        nombre = input()
+        print("ip para esa maquina ")
+        ip = input()
+        dhcpd = open("/etc/dhcp/dhcpd.conf", "a")
+        dhcpd.write('host {0} {1}'.format(nombre, chr(123)))
+        dhcpd.write('hardware ethernet {0} ;'.format(mac))
+        dhcpd.write('fixed-address {0} ;'.format(ip))
+        dhcpd.write('}')
+        dhcpd.close()
+
+        print('\n\n\n[ENTER]')
+        variable = input()
+
+    pass

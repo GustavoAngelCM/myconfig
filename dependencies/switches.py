@@ -39,11 +39,11 @@ def switchMain(value):
             switchPuertos(opcion)
     elif value == '6':
         while True:
-            menuPuertos()
+            menuDHCP()
             opcion = input()
             if opcion == '0':
                 break
-            switchPuertos(opcion)
+            switchDHCP(opcion)
     else:
         print("Error al seleccionar una opción, Seleccione valores entre 0 y 3. \nPresione [Enter] o cualquier tecla seguido de [Enter]  para continaur...")
         enter = input()
@@ -100,4 +100,15 @@ def switchSSH(value):
         deleteUser()    
     else:
         print("Error al seleccionar una opción, Seleccione valores entre 0 y 2. \nPresione [Enter] o cualquier tecla seguido de [Enter]  para continaur...")
+        enter = input()
+
+
+def switchDHCP(value):
+    if value == '1':
+        createDHCP()
+    elif value == '2':
+        addIPMAC()
+    else:
+        print(
+            "Error al seleccionar una opción, Seleccione valores entre 0 y 2. \nPresione [Enter] o cualquier tecla seguido de [Enter]  para continaur...")
         enter = input()

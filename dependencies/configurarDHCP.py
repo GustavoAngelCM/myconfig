@@ -7,7 +7,7 @@ def menu(mensajes):
         cont+=1
 
     #print("==##( 0. Salir )##==")
-print(os.system('ifconfig'))
+os.system('ifconfig')
 menu(['dijite nombre de la interfas para la configuracion ejm(enp0s3)'])
 defaul=input()
 files = open("/etc/default/isc-dhcp-server","w")
@@ -39,8 +39,8 @@ dhcpd.write(" option domain-name-servers {0}, 8.8.8.8;\n".format(router))
 dhcpd.write("}")
 dhcpd.close()
 
-print(os.system('sudo systemctl restart isc-dhcp-server')) 
-print(os.system('sudo systemctl status isc-dhcp-server')) 
+os.system('sudo systemctl restart isc-dhcp-server') 
+os.system('sudo systemctl status isc-dhcp-server') 
 
 # print(os.system('sudo systemctl restart isc-dhcp-server')) 
 ########## ejemplo para dar ip a una maquina 

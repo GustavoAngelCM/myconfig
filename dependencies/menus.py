@@ -124,21 +124,21 @@ def menuSSH():
     print("| Seleccione una opcion...                                            |")
     print("+---------------------------------------------------------------------+")
 
-#def menuDHCP():
-#    plataforma = sys.platform
-#    if plataforma == 'linux':
-#        os.system('clear')
-#    elif plataforma == 'win32':
-#        os.system('cls')
-#    else:    # Para otros sistemas y variantes de Unix
-#        print('ERROR AL LIMPIAR LA PANTALLA')
-#
-#    print("+---------------------------------------------------------------------+")
-#    print("|           SCRIPT DE CONFIGURACIÓN EN PYTHON [PUERTOS]               |")
-#    print("+---------------------------------------------------------------------+")
-#    print("| [1]. VER PUERTOS ABIERTOS.                                          |")
-#    print("| [2]. CERRAR PUERTO.                                                 |")
-#    print("| [0]. Volver.                                                        |")
-#    print("+---------------------------------------------------------------------+")
-#    print("| Seleccione una opcion...                                            |")
-#    print("+---------------------------------------------------------------------+")
+def menuDHCP():
+   plataforma = sys.platform
+   if plataforma == 'linux':
+       os.system('clear')
+   elif plataforma == 'win32':
+       os.system('cls')
+   else:    # Para otros sistemas y variantes de Unix
+       print('ERROR AL LIMPIAR LA PANTALLA')
+
+   print("+---------------------------------------------------------------------+")
+   print("|           SCRIPT DE CONFIGURACIÓN EN PYTHON [DHCP]                  |")
+   print("+---------------------------------------------------------------------+")
+   print("| [1]. CREAR DHCP.                                                    |")
+   print("| [2]. ASIGNAR IP POR MAC.                                            |")
+   print("| [0]. Volver.                                                        |")
+   print("+---------------------------------------------------------------------+")
+   print("| Seleccione una opcion...                                            |")
+   print("+---------------------------------------------------------------------+")
